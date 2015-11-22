@@ -1,0 +1,54 @@
+Motor Trend Car Road Tests
+========================================================
+author: J.P. Zonneveld
+date: November 2015
+transition: rotate
+
+A Shiny Application for the Coursera Developing Data Products Class
+
+GOAL
+========================================================
+type: sub-section
+
+This presentation is part of the peer assessment for the Coursera Developing Data Products class.
+
+In this presentation we will look at the Motor Trend Car Road Tests (mtcars) data-set. To explore the data-set we created a new Shiny Application. The application can be found [here](https://jpzonneveld.shinyapps.io/Shiny_App).
+
+After this presentation you should have a good understanding of the data-set, the application and its working.
+
+
+THE DATA-SET
+========================================================
+
+```{r}
+library(datasets)
+data(mtcars)
+str(mtcars, list.len=8)
+```
+
+THE APPLICATION
+========================================================
+
+The application lets users choose:
+
+- **Vendor** - The manufacturer of the different cars.
+- **Feature** - One of the 11 variables in the data-set.
+
+It will select all observations for that specific manufacturer.
+
+Also the application will calculate the average value for the chosen feature for that particular vendor. It will also give the average value for all cars in the data-set.
+
+EXAMPLE
+========================================================
+Vendor = 'Merc'; Feature = 'mpg'
+
+```{r, echo=FALSE}
+mtcars$vendor <- gsub( " .*$", "", rownames(mtcars))
+Merc <- mtcars[mtcars$vendor=="Merc", 1:7]
+Merc
+```
+
+The average mpg for Merc cars is `r mean(Merc$mpg)`
+
+The global average mpg is `r mean(mtcars$mpg)`
+
